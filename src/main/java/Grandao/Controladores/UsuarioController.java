@@ -16,12 +16,12 @@ public class UsuarioController{
 
     @GetMapping
     public List<Usuario> listar(){
-        return  servicioGeneral.getAllUsuarios();
+        return  servicioGeneral.obtenerUsuariosXml();
     }
 
     @PostMapping("/insertar")
     public void insertar(@RequestBody Usuario usuario){
-        servicioGeneral.addUsuario(usuario);
+        servicioGeneral.guardarUsuarioXml(usuario);
     }
 
 }

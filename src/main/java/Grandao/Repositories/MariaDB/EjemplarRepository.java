@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EjemplarRepository extends JpaRepository<EjemplarDTO, Integer> {
 
-    static EjemplarDTO findByIsbn(String isbn);
+    static EjemplarDTO findByIsbn(String isbn) {
+        return null;
+    }
 }

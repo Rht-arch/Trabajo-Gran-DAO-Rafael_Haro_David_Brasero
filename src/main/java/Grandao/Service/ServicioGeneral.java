@@ -23,6 +23,8 @@ public class ServicioGeneral {
 
     @Autowired
     private PrestamoMongoDAO prestamo;
+    @Autowired
+    private EjemplarRepository ejemplar;
 
     public ServicioGeneral() {
         this.daoUsuarios = new DAOFicherosXML();
@@ -82,22 +84,22 @@ public class ServicioGeneral {
 
     // Obtener todos los ejemplares
     public List<EjemplarDTO> getAllEjemplares() {
-        return ejemplarRepository.findAll();  // Usamos la instancia ejemplarRepository
+        return ejemplar.findAll();  // Usamos la instancia ejemplarRepository
     }
 
     // Obtener un ejemplar por ISBN
     public EjemplarDTO getEjemplarByIsbn(String isbn) {
-        return ejemplarRepository.findByIsbn(isbn);  // Usamos la instancia ejemplarRepository
+        return EjemplarRepository.findByIsbn(isbn);  // Usamos la instancia ejemplarRepository
     }
 
     // Añadir un nuevo ejemplar
     public void addEjemplar(EjemplarDTO ejemplarDTO) {
-        ejemplarRepository.save(ejemplarDTO);  // Usamos la instancia ejemplarRepository
+        ejemplar.save(ejemplarDTO);  // Usamos la instancia ejemplarRepository
     }
 
     // Eliminar un ejemplar por ID
     public void deleteEjemplar(Integer id) {
-        ejemplarRepository.deleteById(id);  // Usamos la instancia ejemplarRepository
+        ejemplar.deleteById(id);  // Usamos la instancia ejemplarRepository
     }
 }
 
