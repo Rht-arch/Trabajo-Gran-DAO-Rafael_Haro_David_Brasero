@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "libro")
-public class Libro {
+public class LibroDTO {
     @Id
     @Column(name = "isbn", nullable = false, length = 20)
     private String isbn;

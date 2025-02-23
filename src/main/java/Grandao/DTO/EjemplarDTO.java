@@ -11,7 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Setter
 @Entity
 @Table(name = "ejemplar")
-public class Ejemplar {
+public class EjemplarDTO {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -19,7 +19,7 @@ public class Ejemplar {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "isbn", nullable = false)
-    private Libro isbn;
+    private LibroDTO isbn;
 
     @ColumnDefault("'Disponible'")
     @Lob

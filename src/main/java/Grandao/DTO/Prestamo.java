@@ -25,7 +25,7 @@ public class Prestamo {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ejemplar_id", nullable = false)
-    private Ejemplar ejemplar;
+    private EjemplarDTO ejemplar;
 
     @Column(name = "fechaInicio", nullable = false)
     private LocalDate fechaInicio;
