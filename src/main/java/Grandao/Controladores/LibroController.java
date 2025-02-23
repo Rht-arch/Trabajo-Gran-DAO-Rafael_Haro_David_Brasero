@@ -23,7 +23,7 @@ public class LibroController {
         return new ResponseEntity<>(libros, HttpStatus.OK);
     }
 
-    // Obtener un libro por su ISBN
+    /* Obtener un libro por su ISBN
     @GetMapping("/{isbn}")
     public ResponseEntity<LibroDTO> getLibro(@PathVariable String isbn) {
         LibroDTO libro = service.getLibro(isbn);
@@ -32,7 +32,7 @@ public class LibroController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Retorna 404 si no se encuentra el libro
         }
-    }
+    }*/
 
     // Crear un nuevo libro
     @PostMapping
@@ -41,7 +41,7 @@ public class LibroController {
         return new ResponseEntity<>(HttpStatus.CREATED); // Retorna 201 si el libro fue creado con éxito
     }
 
-    // Actualizar un libro existente
+    /* Actualizar un libro existente
     @PutMapping("/{isbn}")
     public ResponseEntity<Void> updateLibro(@PathVariable String isbn, @RequestBody LibroDTO libroDTO) {
         // Verifica si el libro existe
@@ -52,9 +52,9 @@ public class LibroController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Retorna 404 si no existe el libro
         }
-    }
+    }*/
 
-    // Eliminar un libro por su ISBN
+    /* Eliminar un libro por su ISBN
     @DeleteMapping("/{isbn}")
     public ResponseEntity<Void> deleteLibro(@PathVariable String isbn) {
         if (service.getLibro(isbn) != null) {
@@ -63,5 +63,5 @@ public class LibroController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Retorna 404 si no se encuentra el libro
         }
-    }
+    }*/
 }
