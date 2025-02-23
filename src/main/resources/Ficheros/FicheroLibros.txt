@@ -1,0 +1,10 @@
+978-1234567890,El Quijote,Miguel de Cervantes
+978-9876543210,Cien años de soledad,Gabriel García Márquez
+978-0140283334,1984,George Orwell
+978-0345391803,The Hobbit,J.R.R. Tolkien
+978-0061120084,To Kill a Mockingbird,Harper Lee
+978-0451524935,Brave New World,Aldous Huxley
+978-0679404678,The Great Gatsby,F. Scott Fitzgerald
+978-0062268533,Fahrenheit 451,Ray Bradbury
+978-0316769488,The Catcher in the Rye,J.D. Salinger
+978-0385751477,The Hunger Games,Suzanne Collins
