@@ -90,7 +90,7 @@ public class DAOFicherosTXT {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     /* Eliminar un libro
     public void deleteLibro(String isbn) {

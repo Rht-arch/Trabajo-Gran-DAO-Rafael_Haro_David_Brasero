@@ -52,7 +52,7 @@ public class LibroController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Retorna 404 si no existe el libro
         }
-    }*/
+    }
 
     /* Eliminar un libro por su ISBN
     @DeleteMapping("/{isbn}")
