@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DAOFicherosXML {
 
-    private static final String directorios= "src/main/resources/Ficheros";
+    private static final String directorios= "src/main/resources/Ficheros/usuarios.xml";
 
     public List<Usuario> obtenerUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();

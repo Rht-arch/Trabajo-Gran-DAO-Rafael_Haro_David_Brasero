@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<usuarios>
+    <usuario>
+        <id>0</id>
+        <dni>12345678A</dni>
+        <nombre>Pedro</nombre>
+        <email>pedro@example.com</email>
+        <password>password123</password>
+        <tipo>usuario</tipo>
+        <penalizacionHasta/>
+    </usuario>
+</usuarios>
