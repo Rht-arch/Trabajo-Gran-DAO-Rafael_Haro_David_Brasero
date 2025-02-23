@@ -1,39 +1,64 @@
 package Grandao.Controladores;
 
 import Grandao.DTO.EjemplarDTO;
-import Grandao.Service.EjemplarService;
+import Grandao.Service.ServicioGeneral;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/ejemplares")
+@RequestMapping("/api/ejemplares")
 public class EjemplarController {
 
     @Autowired
-    private EjemplarService ejemplarService;
+    private ServicioGeneral ejemplarService;
 
+    // Obtener todos los ejemplares
+    @GetMapping
+    public List<EjemplarDTO> getAllEjemplares() {
+        return ejemplarService.getAllEjemplares();
+    }
+
+    // Obtener un ejemplar por ID
     @GetMapping("/{id}")
-    public ResponseEntity<EjemplarDTO> getEjemplar(@PathVariable Long id) {
+    public ResponseEntity<EjemplarDTO> getEjemplar(@PathVariable int id) {
         EjemplarDTO ejemplar = ejemplarService.getEjemplar(id);
-        return ResponseEntity.ok(ejemplar);
+        if (ejemplar != null) {
+            return ResponseEntity.ok(ejemplar);
+        }
+        return ResponseEntity.notFound().build();
     }
 
+    // Obtener un ejemplar por ISBN
+    @GetMapping("/isbn/{isbn}")
+    public ResponseEntity<EjemplarDTO> getEjemplarByIsbn(@PathVariable String isbn) {
+        EjemplarDTO ejemplar = ejemplarService.getEjemplarByIsbn(isbn);
+        if (ejemplar != null) {
+            return ResponseEntity.ok(ejemplar);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // Crear un nuevo ejemplar
     @PostMapping
-    public ResponseEntity<EjemplarDTO> createEjemplar(@RequestBody EjemplarDTO ejemplarDTO) {
-        EjemplarDTO created = ejemplarService.createEjemplar(ejemplarDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    public ResponseEntity<EjemplarDTO> addEjemplar(@RequestBody EjemplarDTO ejemplarDTO) {
+        ejemplarService.addEjemplar(ejemplarDTO);
+        return ResponseEntity.status(201).body(ejemplarDTO);
     }
 
+    // Actualizar un ejemplar existente
     @PutMapping("/{id}")
-    public ResponseEntity<EjemplarDTO> updateEjemplar(@PathVariable Long id, @RequestBody EjemplarDTO ejemplarDTO) {
-        EjemplarDTO updated = ejemplarService.updateEjemplar(id, ejemplarDTO);
-        return ResponseEntity.ok(updated);
+    public ResponseEntity<EjemplarDTO> updateEjemplar(@PathVariable int id, @RequestBody EjemplarDTO ejemplarDTO) {
+        ejemplarDTO.setId(id);
+        ejemplarService.updateEjemplar(ejemplarDTO);
+        return ResponseEntity.ok(ejemplarDTO);
     }
 
+    // Eliminar un ejemplar por ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEjemplar(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEjemplar(@PathVariable int id) {
         ejemplarService.deleteEjemplar(id);
         return ResponseEntity.noContent().build();
     }
