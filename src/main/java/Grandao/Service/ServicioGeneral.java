@@ -76,6 +76,11 @@ public class ServicioGeneral {
     public Prestamo guardarPrestamo(Prestamo pr) {
         return prestamo.save(pr);
     }
+    public Prestamo actualizarPrestamo(Prestamo pr, int id) {
+        pr.setId(id);
+        return prestamo.save(pr);
+
+    }
 
     public void borrarPrestamo(int id) {
         prestamo.deleteById(id);

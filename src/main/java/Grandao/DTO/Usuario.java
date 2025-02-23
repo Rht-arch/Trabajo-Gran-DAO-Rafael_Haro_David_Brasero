@@ -1,10 +1,11 @@
 package Grandao.DTO;
 
+import Grandao.ClasesExtra.LocalDateAdapter;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 @XmlRootElement(name = "usuario")
@@ -17,13 +18,14 @@ public class Usuario {
     private String email;
     private String password;
     private String tipo;
-    private Date penalizacionHasta;
+
+    private LocalDate penalizacionHasta;
 
     public Usuario() {
         // Constructor vacío necesario para JAXB
     }
 
-    public Usuario(int id, String dni, String nombre, String email, String password, String tipo, Date penalizacionHasta) {
+    public Usuario(int id, String dni, String nombre, String email, String password, String tipo, LocalDate penalizacionHasta) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
@@ -87,12 +89,12 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    @XmlElement
-    public Date getPenalizacionHasta() {
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    public LocalDate getPenalizacionHasta() {
         return penalizacionHasta;
     }
 
-    public void setPenalizacionHasta(Date penalizacionHasta) {
+    public void setPenalizacionHasta(LocalDate penalizacionHasta) {
         this.penalizacionHasta = penalizacionHasta;
     }
 

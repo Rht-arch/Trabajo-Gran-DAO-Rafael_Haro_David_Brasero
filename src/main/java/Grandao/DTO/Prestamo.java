@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Prestamo {
 
     @Id
-    private String id;
+    private int id;
     private Long idUsuario;
     private Long idLibro;
     private LocalDate fechaPrestamo;
@@ -28,11 +28,11 @@ public class Prestamo {
     }
 
     // Getters y Setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
