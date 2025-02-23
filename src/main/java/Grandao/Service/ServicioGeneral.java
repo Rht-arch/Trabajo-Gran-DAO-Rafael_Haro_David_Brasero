@@ -2,9 +2,11 @@ package Grandao.Service;
 
 import Grandao.DAO.DAOFicherosTXT;
 import Grandao.DAO.DAOFicherosXML;
+import Grandao.DTO.EjemplarDTO;
 import Grandao.DTO.LibroDTO;
 import Grandao.DTO.Prestamo;
 import Grandao.DTO.Usuario;
+import Grandao.Repositories.MariaDB.EjemplarRepository;
 import Grandao.Repositories.Mongo.PrestamoMongoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,5 +78,26 @@ public class ServicioGeneral {
     public void borrarPrestamo(int id) {
         prestamo.deleteById(id);
     }
+    // Métodos para ejemplares (MariaDB)
 
+    // Obtener todos los ejemplares
+    public List<EjemplarDTO> getAllEjemplares() {
+        return ejemplarRepository.findAll();  // Usamos la instancia ejemplarRepository
+    }
+
+    // Obtener un ejemplar por ISBN
+    public EjemplarDTO getEjemplarByIsbn(String isbn) {
+        return ejemplarRepository.findByIsbn(isbn);  // Usamos la instancia ejemplarRepository
+    }
+
+    // Añadir un nuevo ejemplar
+    public void addEjemplar(EjemplarDTO ejemplarDTO) {
+        ejemplarRepository.save(ejemplarDTO);  // Usamos la instancia ejemplarRepository
+    }
+
+    // Eliminar un ejemplar por ID
+    public void deleteEjemplar(Integer id) {
+        ejemplarRepository.deleteById(id);  // Usamos la instancia ejemplarRepository
+    }
 }
+
