@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class Service {
+public class ServicioGeneral {
 
     @Autowired
     private DAOFicherosTXT libroDAO; // Inyectar el DAO de libros
