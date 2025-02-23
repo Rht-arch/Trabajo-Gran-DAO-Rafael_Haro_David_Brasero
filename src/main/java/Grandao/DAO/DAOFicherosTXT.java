@@ -14,8 +14,8 @@ import java.util.List;
 @Repository
 public class DAOFicherosTXT {
 
-    @Value("${libros.filepath}")
-    private String filePath;
+
+    private String filePath = "src/main/resources/Ficheros/FicheroLibros.txt";
 
     // Verifica si el archivo existe y lo crea si no
     private void ensureFileExists() {
