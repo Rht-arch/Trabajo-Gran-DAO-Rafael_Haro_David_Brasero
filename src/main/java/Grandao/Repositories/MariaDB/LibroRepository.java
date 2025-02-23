@@ -1,4 +1,4 @@
-package Grandao.Repositories;
+package Grandao.Repositories.MariaDB;
 
 public interface LibroRepository {
 }
