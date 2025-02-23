@@ -1,7 +1,9 @@
 package Grandao.Controladores;
 
 import Grandao.DTO.EjemplarDTO;
+import Grandao.Service.EjemplarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
