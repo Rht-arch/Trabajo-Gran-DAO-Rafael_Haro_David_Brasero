@@ -18,9 +18,9 @@ public class EjemplarDTO {
     private Estado estado;
 
     public enum Estado {
-        DISPONIBLE,
-        PRESTADO,
-        DAÑADO
+        Disponible,
+        Prestado,
+        Dañado
     }
 
     // Getters y Setters
