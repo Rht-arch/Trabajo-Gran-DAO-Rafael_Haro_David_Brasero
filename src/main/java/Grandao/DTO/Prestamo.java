@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@Entity
+@Document(collection = "biblioteca" )
 @Table(name = "prestamo")
 public class Prestamo {
     @Id

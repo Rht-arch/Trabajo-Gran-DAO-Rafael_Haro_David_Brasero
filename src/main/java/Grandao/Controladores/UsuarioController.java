@@ -1,4 +1,4 @@
 package Grandao.Controladores;
 
-public class UsuarioController
+public class UsuarioController{
 }
