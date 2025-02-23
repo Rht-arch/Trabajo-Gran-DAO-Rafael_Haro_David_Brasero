@@ -1,10 +1,11 @@
 package Grandao.Service;
 
 import Grandao.DAO.DAOFicherosTXT;
-
+import Grandao.DAO.DAOFicherosXML;
 import Grandao.DTO.LibroDTO;
-import Grandao.DTO.EjemplarDTO;  // DTO para Ejemplar
-import Grandao.Repositories.MariaDB.EjemplarRepository;
+import Grandao.DTO.Prestamo;
+import Grandao.DTO.Usuario;
+import Grandao.Repositories.Mongo.PrestamoMongoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,12 @@ import java.util.List;
 public class ServicioGeneral {
 
     @Autowired
-    private DAOFicherosTXT daoLibro;  // DAO para libros en archivo de texto
+    private DAOFicherosTXT daoLibro;  // Aquí inyectamos el DAO correspondiente al manejo de archivos txt para libros
+
+    private DAOFicherosXML daoUsuarios;
 
     @Autowired
-    private EjemplarRepository daoEjemplar;  // DAO para Ejemplares en MariaDB (JPA)
-
+    private PrestamoMongoDAO prestamo;
     // Obtener todos los libros
     public List<LibroDTO> getAllLibros() {
         return daoLibro.getAllLibros();
@@ -39,37 +41,35 @@ public class ServicioGeneral {
         daoLibro.updateLibro(libroDTO);
     }
 
-    // Eliminar un libro por ISBN
+    /* Eliminar un libro por ISBN
     public void deleteLibro(String isbn) {
         daoLibro.deleteLibro(isbn);
     }*/
 
-    // ==============================================
-    // Operaciones para Ejemplares (MariaDB)
-    // ==============================================
+    //Ficheros XML
 
-    // Obtener todos los ejemplares
-    public List<EjemplarDTO> getAllEjemplares() {
-        return daoEjemplar.findAll();  // Utiliza el método findAll() de JPARepository
+    //Guardar Usuarios con xml
+    public void addUsuario (Usuario usuario) {
+        daoUsuarios.guardar(usuario);
     }
 
-    // Obtener un ejemplar por ID
-    public EjemplarDTO getEjemplarById(int id) {
-        return daoEjemplar.findById(id).orElse(null);  // Devuelve null si no lo encuentra
+    //Listar todos los usuarios en un xml
+    public List<Usuario> getAllUsuarios() {
+        return daoUsuarios.listar();
     }
 
-    // Añadir un nuevo ejemplar
-    public void addEjemplar(EjemplarDTO ejemplarDTO) {
-        daoEjemplar.save(ejemplarDTO);  // Guarda el ejemplar en la base de datos
+    //MongoDB
+
+    public List<Prestamo> obtenerPrestamos() {
+        return prestamo.findAll();
     }
 
-    // Actualizar un ejemplar existente
-    public void updateEjemplar(EjemplarDTO ejemplarDTO) {
-        daoEjemplar.save(ejemplarDTO);  // El método save también sirve para actualizar
+    public Prestamo guardarPrestamo(Prestamo pr) {
+        return prestamo.save(pr);
     }
 
-    // Eliminar un ejemplar por ID
-    public void deleteEjemplar(int id) {
-        daoEjemplar.deleteById(id);  // Elimina el ejemplar por su ID
+    public void borrarPrestamo(int id) {
+        prestamo.deleteById(id);
     }
+
 }
