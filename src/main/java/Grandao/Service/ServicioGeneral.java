@@ -21,6 +21,11 @@ public class ServicioGeneral {
 
     @Autowired
     private PrestamoMongoDAO prestamo;
+
+    public ServicioGeneral() {
+        this.daoUsuarios = new DAOFicherosXML();
+    }
+
     // Obtener todos los libros
     public List<LibroDTO> getAllLibros() {
         return daoLibro.getAllLibros();
@@ -49,13 +54,13 @@ public class ServicioGeneral {
     //Ficheros XML
 
     //Guardar Usuarios con xml
-    public void addUsuario (Usuario usuario) {
-        daoUsuarios.guardar(usuario);
+    public List<Usuario> obtenerUsuariosXml() {
+        return DAOFicherosXML.obtenerUsuarios();
     }
 
-    //Listar todos los usuarios en un xml
-    public List<Usuario> getAllUsuarios() {
-        return daoUsuarios.listar();
+    // Guardar un usuario en XML
+    public void guardarUsuarioXml(Usuario usuario) {
+        DAOFicherosXML.guardarUsuario(usuario);
     }
 
     //MongoDB

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface PrestamoMongoDAO extends MongoRepository<Prestamo,Integer> {
-    public List<Prestamo> findByPrestamoId(int prestamoId);
+    public List<Prestamo> findById(int id);
     public List<Prestamo> findByIdLibro(int idLibro);
     public List<Prestamo> findByIdUsuario(int idUsuario);
 
