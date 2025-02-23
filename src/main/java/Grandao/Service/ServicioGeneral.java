@@ -55,12 +55,12 @@ public class ServicioGeneral {
 
     //Guardar Usuarios con xml
     public List<Usuario> obtenerUsuariosXml() {
-        return DAOFicherosXML.obtenerUsuarios();
+        return daoUsuarios.obtenerUsuarios();
     }
 
     // Guardar un usuario en XML
     public void guardarUsuarioXml(Usuario usuario) {
-        DAOFicherosXML.guardarUsuario(usuario);
+        daoUsuarios.guardarUsuario(usuario);
     }
 
     //MongoDB
