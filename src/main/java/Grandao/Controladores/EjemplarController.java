@@ -12,7 +12,7 @@ import java.util.List;
 public class EjemplarController {
 
     @Autowired
-    private ServicioGeneral servicioGeneral;  // Asegúrate de que el nombre del servicio esté bien
+    private ServicioGeneral servicioGeneral;
 
     // Obtener todos los ejemplares
     @GetMapping
@@ -23,7 +23,7 @@ public class EjemplarController {
     // Obtener un ejemplar por ISBN
     @GetMapping("/{isbn}")
     public EjemplarDTO getEjemplarByIsbn(@PathVariable String isbn) {
-        return servicioGeneral.getEjemplarByIsbn(isbn);  // Llamamos al método correcto del servicio
+        return servicioGeneral.getEjemplarByIsbn(isbn);
     }
 
     // Añadir un nuevo ejemplar
