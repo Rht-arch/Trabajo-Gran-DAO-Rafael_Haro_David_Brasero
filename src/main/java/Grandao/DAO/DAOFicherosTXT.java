@@ -36,15 +36,20 @@ public class DAOFicherosTXT {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
+                String[] data = line.split(",");  // Separar los datos por coma
+                // Crear un objeto LibroDTO y asignar los valores leídos desde el archivo
                 LibroDTO libro = new LibroDTO();
-                libros.add(libro);
+                libro.setIsbn(data[0]);  // Asignar ISBN
+                libro.setTitulo(data[1]);  // Asignar título
+                libro.setAutor(data[2]);  // Asignar autor
+                libros.add(libro);  // Añadir el libro a la lista
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return libros;
+        return libros;  // Retornar la lista de libros
     }
+
 
     /* Obtener un libro por su ISBN
     public LibroDTO getLibro(String isbn) {
