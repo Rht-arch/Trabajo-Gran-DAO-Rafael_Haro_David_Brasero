@@ -1,4 +1,4 @@
-package Grandao.Controller;
+package Grandao.Controladores;
 
 import Grandao.DTO.EjemplarDTO;
 import Grandao.Service.ServicioGeneral;
