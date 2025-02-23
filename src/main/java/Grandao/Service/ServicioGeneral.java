@@ -1,7 +1,11 @@
 package Grandao.Service;
 
 import Grandao.DAO.DAOFicherosTXT;
+import Grandao.DAO.DAOFicherosXML;
 import Grandao.DTO.LibroDTO;
+import Grandao.DTO.Prestamo;
+import Grandao.DTO.Usuario;
+import Grandao.Repositories.Mongo.PrestamoMongoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,10 @@ public class ServicioGeneral {
     @Autowired
     private DAOFicherosTXT daoLibro;  // Aquí inyectamos el DAO correspondiente al manejo de archivos txt para libros
 
+    private DAOFicherosXML daoUsuarios;
+
+    @Autowired
+    private PrestamoMongoDAO prestamo;
     // Obtener todos los libros
     public List<LibroDTO> getAllLibros() {
         return daoLibro.getAllLibros();
@@ -37,4 +45,31 @@ public class ServicioGeneral {
     public void deleteLibro(String isbn) {
         daoLibro.deleteLibro(isbn);
     }*/
+
+    //Ficheros XML
+
+    //Guardar Usuarios con xml
+    public void addUsuario (Usuario usuario) {
+        daoUsuarios.guardar(usuario);
+    }
+
+    //Listar todos los usuarios en un xml
+    public List<Usuario> getAllUsuarios() {
+        return daoUsuarios.listar();
+    }
+
+    //MongoDB
+
+    public List<Prestamo> obtenerPrestamos() {
+        return prestamo.findAll();
+    }
+
+    public Prestamo guardarPrestamo(Prestamo pr) {
+        return prestamo.save(pr);
+    }
+
+    public void borrarPrestamo(int id) {
+        prestamo.deleteById(id);
+    }
+
 }
