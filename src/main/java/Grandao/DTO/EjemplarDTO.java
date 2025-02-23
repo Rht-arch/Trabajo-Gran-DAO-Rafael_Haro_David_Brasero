@@ -1,29 +1,57 @@
 package Grandao.DTO;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "ejemplar")
 public class EjemplarDTO {
+
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "isbn", nullable = false)
-    private LibroDTO isbn;
+    @Column(name = "isbn", nullable = false, length = 20)
+    private String isbn;
 
-    @ColumnDefault("'Disponible'")
-    @Lob
-    @Column(name = "estado")
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false)
+    private Estado estado;
 
+    public enum Estado {
+        DISPONIBLE,
+        PRESTADO,
+        DAÑADO
+    }
+
+    // Getters y Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public EjemplarDTO() {}
+
+    public EjemplarDTO(String isbn, Estado estado) {
+        this.isbn = isbn;
+        this.estado = estado;
+    }
 }
