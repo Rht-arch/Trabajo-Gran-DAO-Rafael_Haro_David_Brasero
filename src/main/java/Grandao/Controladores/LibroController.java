@@ -1,7 +1,7 @@
 package Grandao.Controladores;
 
 import Grandao.DTO.LibroDTO;
-import Grandao.Service.Service;
+import Grandao.Service.ServicioGeneral;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class LibroController {
 
     @Autowired
-    private Service service; // Inyección de la clase Service
+    private ServicioGeneral service; // Inyección de la clase Service
 
     // Obtener todos los libros
     @GetMapping
