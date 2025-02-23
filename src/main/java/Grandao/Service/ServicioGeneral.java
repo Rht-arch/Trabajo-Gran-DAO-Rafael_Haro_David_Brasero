@@ -102,9 +102,22 @@ public class ServicioGeneral {
         ejemplar.save(ejemplarDTO);  // Usamos la instancia ejemplarRepository
     }
 
+    //Modificar un ejemplar por id
+    public void updateEjemplar(Integer id, EjemplarDTO ejemplarDTO) {
+        // Lógica para actualizar el ejemplar en la base de datos
+        EjemplarDTO ejemplarExistente = ejemplarRepository.findById(id).orElseThrow(() -> new RuntimeException("Ejemplar no encontrado"));
+        ejemplarExistente.setIsbn(ejemplarDTO.getIsbn());
+        ejemplarExistente.setTitulo(ejemplarDTO.getTitulo());
+        ejemplarExistente.setAutor(ejemplarDTO.getAutor());
+        ejemplarRepository.save(ejemplarExistente);
+    }
+
+
     // Eliminar un ejemplar por ID
     public void deleteEjemplar(Integer id) {
         ejemplar.deleteById(id);  // Usamos la instancia ejemplarRepository
     }
+
+
 }
 

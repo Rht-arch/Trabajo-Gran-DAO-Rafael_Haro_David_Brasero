@@ -31,6 +31,12 @@ public class EjemplarController {
     public void addEjemplar(@RequestBody EjemplarDTO ejemplarDTO) {
         servicioGeneral.addEjemplar(ejemplarDTO);
     }
+    // Actualizar un ejemplar por ID
+    @PutMapping("/{id}")
+    public void updateEjemplar(@PathVariable Integer id, @RequestBody EjemplarDTO ejemplarDTO) {
+        servicioGeneral.updateEjemplar(id, ejemplarDTO);
+    }
+
 
     // Eliminar un ejemplar por ID
     @DeleteMapping("/{id}")
