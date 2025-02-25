@@ -57,7 +57,6 @@ public class ServicioGeneral {
         return true;
     }
 
-
     //Ficheros XML
 
     //Guardar Usuarios con xml
@@ -100,19 +99,38 @@ public class ServicioGeneral {
         return EjemplarRepository.findByIsbn(isbn);  // Usamos la instancia ejemplarRepository
     }
 
-    // Añadir un nuevo ejemplar
     public void addEjemplar(EjemplarDTO ejemplarDTO) {
-        ejemplar.save(ejemplarDTO);  // Usamos la instancia ejemplarRepository
+        if (!validarEjemplar(ejemplarDTO)) {
+            throw new IllegalArgumentException("El ejemplar tiene datos inválidos.");
+        }
+        ejemplar.save(ejemplarDTO);
     }
 
-    //Modificar un ejemplar por id
+    // Método de validación antes de guardar un ejemplar
+    private boolean validarEjemplar(EjemplarDTO ejemplar) {
+        if (ejemplar.getIsbn() == null || !ejemplar.getIsbn().matches("^[0-9\\-]+$") || ejemplar.getIsbn().length() < 10 || ejemplar.getIsbn().length() > 20) {
+            return false;
+        }
+        if (ejemplar.getEstado() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    // Modificar un ejemplar por id con validación
     public void updateEjemplar(Integer id, EjemplarDTO ejemplarDTO) {
-        // Lógica para actualizar el ejemplar en la base de datos
-        EjemplarDTO ejemplarExistente = ejemplar.findById(id).orElseThrow(() -> new RuntimeException("Ejemplar no encontrado"));
+        EjemplarDTO ejemplarExistente = ejemplar.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ejemplar no encontrado"));
+
+        if (!validarEjemplar(ejemplarDTO)) {
+            throw new IllegalArgumentException("Datos del ejemplar inválidos.");
+        }
+
         ejemplarExistente.setIsbn(ejemplarDTO.getIsbn());
         ejemplarExistente.setEstado(ejemplarDTO.getEstado());
         ejemplar.save(ejemplarExistente);
     }
+
 
 
     // Eliminar un ejemplar por ID

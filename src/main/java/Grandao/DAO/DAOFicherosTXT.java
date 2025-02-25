@@ -49,24 +49,6 @@ public class DAOFicherosTXT {
         return libros;  // Retornar la lista de libros
     }
 
-
-    /* Obtener un libro por su ISBN
-    public LibroDTO getLibro(String isbn) {
-        ensureFileExists(); // Asegurarse de que el archivo exista
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data[0].equals(isbn)) {
-                    return new LibroDTO(data[0], data[1], data[2]);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
-
     // Guardar un nuevo libro
     public void saveLibro(LibroDTO libroDTO) {
         ensureFileExists(); // Asegurarse de que el archivo exista
@@ -78,37 +60,4 @@ public class DAOFicherosTXT {
         }
     }
 
-    /* Actualizar un libro
-    public void updateLibro(LibroDTO libroDTO) {
-        ensureFileExists(); // Asegurarse de que el archivo exista
-        List<LibroDTO> libros = getAllLibros();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (LibroDTO libro : libros) {
-                if (libro.getIsbn().equals(libroDTO.getIsbn())) {
-                    writer.write(libroDTO.getIsbn() + "," + libroDTO.getTitulo() + "," + libroDTO.getAutor());
-                } else {
-                    writer.write(libro.getIsbn() + "," + libro.getTitulo() + "," + libro.getAutor());
-                }
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /* Eliminar un libro
-    public void deleteLibro(String isbn) {
-        ensureFileExists(); // Asegurarse de que el archivo exista
-        List<LibroDTO> libros = getAllLibros();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (LibroDTO libro : libros) {
-                if (!libro.getIsbn().equals(isbn)) {
-                    writer.write(libro.getIsbn() + "," + libro.getTitulo() + "," + libro.getAutor());
-                    writer.newLine();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }
