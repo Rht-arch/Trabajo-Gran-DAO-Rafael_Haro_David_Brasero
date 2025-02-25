@@ -106,8 +106,8 @@ public class ServicioGeneral {
     }
 
     // Obtener un ejemplar por ISBN
-    public EjemplarDTO getEjemplarByIsbn(String isbn) {
-        return EjemplarRepository.findByIsbn(isbn);  // Usamos la instancia ejemplarRepository
+    public EjemplarDTO getEjemplarById(int id) {
+        return ejemplar.findById(id);  // Usamos la instancia ejemplarRepository
     }
 
     public void addEjemplar(EjemplarDTO ejemplarDTO) {

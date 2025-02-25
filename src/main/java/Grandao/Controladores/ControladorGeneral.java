@@ -86,9 +86,9 @@ public class ControladorGeneral {
     }
 
     // Obtener un ejemplar por ISBN
-    @GetMapping("ejemplares/{isbn}")
-    public EjemplarDTO getEjemplarByIsbn(@PathVariable String isbn) {
-        return servicioGeneral.getEjemplarByIsbn(isbn);
+    @GetMapping("ejemplares/{id}")
+    public EjemplarDTO getEjemplarById(@PathVariable int id) {
+        return servicioGeneral.getEjemplarById(id);
     }
 
     // Añadir un nuevo ejemplar

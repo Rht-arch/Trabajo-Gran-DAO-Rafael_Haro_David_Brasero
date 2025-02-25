@@ -16,4 +16,20 @@
         <password>password123</password>
         <tipo>administrador</tipo>
     </usuario>
+    <usuario>
+        <id>2</id>
+        <dni>67821394G</dni>
+        <nombre>Pepito</nombre>
+        <email>pepito@example.com</email>
+        <password>password123</password>
+        <tipo>administrador</tipo>
+    </usuario>
+    <usuario>
+        <id>2</id>
+        <dni>67821394G</dni>
+        <nombre>Juanito</nombre>
+        <email>pepito@example.com</email>
+        <password>password123</password>
+        <tipo>administrador</tipo>
+    </usuario>
 </usuarios>

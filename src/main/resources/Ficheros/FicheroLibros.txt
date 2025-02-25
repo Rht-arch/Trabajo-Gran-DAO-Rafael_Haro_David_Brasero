@@ -10,3 +10,5 @@
 978-0385751477,The Hunger Games,Suzanne Collins
 978-0062268534,Fahrenheit 51,Ray Bradbury
 978-8498726138,Nacidos de la bruma,Brandon Sanderson
+978-8498726138,Pozo de la ascension,Brandon Sanderson
+978-8498726138,Pepito Jones,Brandon Sanderson

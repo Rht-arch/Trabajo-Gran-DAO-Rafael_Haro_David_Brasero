@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EjemplarRepository extends JpaRepository<EjemplarDTO, Integer> {
 
-    static EjemplarDTO findByIsbn(String isbn) {
-        return null;
-    }
+   EjemplarDTO findById(int id);
+
 }
