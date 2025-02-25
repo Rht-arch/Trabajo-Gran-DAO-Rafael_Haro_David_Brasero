@@ -30,4 +30,28 @@ public class LibroDTO {
     @NotBlank(message = "El autor no puede estar vacío")
     @Size(max = 100, message = "El nombre del autor no puede tener más de 100 caracteres")
     private String autor;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
 }

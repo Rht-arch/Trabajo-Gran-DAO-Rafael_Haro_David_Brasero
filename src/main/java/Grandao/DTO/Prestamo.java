@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 
-@Document(collection = "prestamos")
+@Document(collection = "prestamos_v2")
 public class Prestamo {
 
     @Id
