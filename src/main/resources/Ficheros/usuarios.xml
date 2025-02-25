@@ -7,6 +7,13 @@
         <email>pedro@example.com</email>
         <password>password123</password>
         <tipo>usuario</tipo>
-        <penalizacionHasta/>
+    </usuario>
+    <usuario>
+        <id>1</id>
+        <dni>67821394G</dni>
+        <nombre>Pablo</nombre>
+        <email>pablo@example.com</email>
+        <password>password123</password>
+        <tipo>administrador</tipo>
     </usuario>
 </usuarios>

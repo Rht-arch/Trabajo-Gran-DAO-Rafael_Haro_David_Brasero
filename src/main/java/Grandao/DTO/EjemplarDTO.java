@@ -8,7 +8,6 @@ import jakarta.validation.constraints.*;
 public class EjemplarDTO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "isbn", nullable = false, length = 20)
