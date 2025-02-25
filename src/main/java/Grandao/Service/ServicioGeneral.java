@@ -35,25 +35,28 @@ public class ServicioGeneral {
         return daoLibro.getAllLibros();
     }
 
-    /* Obtener un libro por su ISBN
-    public LibroDTO getLibro(String isbn) {
-        return daoLibro.getLibro(isbn);
-    }*/
 
-    // Añadir un nuevo libro
     public void addLibro(LibroDTO libroDTO) {
+        if (!validarLibro(libroDTO)) {
+            throw new IllegalArgumentException("El libro tiene datos inválidos.");
+        }
         daoLibro.saveLibro(libroDTO);
     }
 
-    /* Actualizar un libro existente
-    public void updateLibro(LibroDTO libroDTO) {
-        daoLibro.updateLibro(libroDTO);
+    // Método de validación antes de guardar un libro
+    private boolean validarLibro(LibroDTO libro) {
+        if (libro.getIsbn() == null || !libro.getIsbn().matches("^[0-9\\-]+$") || libro.getIsbn().length() < 10 || libro.getIsbn().length() > 20) {
+            return false;
+        }
+        if (libro.getTitulo() == null || libro.getTitulo().isEmpty() || libro.getTitulo().length() > 200) {
+            return false;
+        }
+        if (libro.getAutor() == null || libro.getAutor().isEmpty() || libro.getAutor().length() > 100) {
+            return false;
+        }
+        return true;
     }
 
-    /* Eliminar un libro por ISBN
-    public void deleteLibro(String isbn) {
-        daoLibro.deleteLibro(isbn);
-    }*/
 
     //Ficheros XML
 
