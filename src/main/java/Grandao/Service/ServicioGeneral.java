@@ -30,6 +30,10 @@ public class ServicioGeneral {
         this.daoUsuarios = new DAOFicherosXML();
     }
 
+    /*
+    Métodos para ficheros TXT
+    */
+
     // Obtener todos los libros
     public List<LibroDTO> getAllLibros() {
         return daoLibro.getAllLibros();
@@ -57,7 +61,9 @@ public class ServicioGeneral {
         return true;
     }
 
-    //Ficheros XML
+    /*
+    Métodos para Ficheros XML
+    */
 
     //Guardar Usuarios con xml
     public List<Usuario> obtenerUsuariosXml() {
@@ -69,7 +75,10 @@ public class ServicioGeneral {
         daoUsuarios.guardarUsuario(usuario);
     }
 
-    //MongoDB
+
+    /*
+    Métodos MongoDB
+    */
 
     public List<Prestamo> obtenerPrestamos() {
         return prestamo.findAll();
@@ -81,13 +90,15 @@ public class ServicioGeneral {
     public Prestamo actualizarPrestamo(Prestamo pr, int id) {
         pr.setId(id);
         return prestamo.save(pr);
-
     }
 
     public void borrarPrestamo(int id) {
         prestamo.deleteById(id);
     }
-    // Métodos para ejemplares (MariaDB)
+
+    /*
+    Métodos para ejemplares (MariaDB)
+    */
 
     // Obtener todos los ejemplares
     public List<EjemplarDTO> getAllEjemplares() {
@@ -130,14 +141,9 @@ public class ServicioGeneral {
         ejemplarExistente.setEstado(ejemplarDTO.getEstado());
         ejemplar.save(ejemplarExistente);
     }
-
-
-
     // Eliminar un ejemplar por ID
     public void deleteEjemplar(Integer id) {
         ejemplar.deleteById(id);  // Usamos la instancia ejemplarRepository
     }
-
-
 }
 

@@ -18,6 +18,7 @@ public class ControladorGeneral {
 
     @Autowired
     public ServicioGeneral servicioGeneral;
+
     /*
     Metodos de prestamos con MongoDB
      */
@@ -43,10 +44,10 @@ public class ControladorGeneral {
     public void eliminarPrestamo(@PathVariable int id) {
         servicioGeneral.borrarPrestamo(id);
     }
+
     /*
     Metodos de usuarios con XML
      */
-
     //READ usuarios
     @GetMapping("/usuarios")
     public List<Usuario> listar(){
@@ -60,9 +61,8 @@ public class ControladorGeneral {
     }
 
     /*
-    Metodos de libros con ficheros
+    Metodos de libros con ficheros TXT
      */
-
     // Obtener todos los libros
     @GetMapping("/libros")
     public ResponseEntity<List<LibroDTO>> getAllLibros() {
