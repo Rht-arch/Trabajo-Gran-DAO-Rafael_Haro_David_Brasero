@@ -143,7 +143,8 @@ public class ServicioGeneral {
     }
     // Eliminar un ejemplar por ID
     public void deleteEjemplar(Integer id) {
-        ejemplar.deleteById(id);  // Usamos la instancia ejemplarRepository
+        ejemplar.deleteById(id);// Usamos la instancia ejemplarRepository
+        System.out.println("Ejemplar eliminado: " + id);
     }
 }
 
