@@ -1,9 +1,13 @@
 package Grandao.Controladores;
 
+import Grandao.DTO.EjemplarDTO;
+import Grandao.DTO.LibroDTO;
 import Grandao.DTO.Prestamo;
 import Grandao.DTO.Usuario;
 import Grandao.Service.ServicioGeneral;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,5 +57,53 @@ public class ControladorGeneral {
     @PostMapping("/usuarios")
     public void insertar(@RequestBody Usuario usuario){
         servicioGeneral.guardarUsuarioXml(usuario);
+    }
+
+    /*
+    Metodos de libros con ficheros
+     */
+
+    // Obtener todos los libros
+    @GetMapping("/libros")
+    public ResponseEntity<List<LibroDTO>> getAllLibros() {
+        List<LibroDTO> libros = servicioGeneral.getAllLibros();
+        return new ResponseEntity<>(libros, HttpStatus.OK);
+    }
+    // Crear un nuevo libro
+    @PostMapping("/libros")
+    public ResponseEntity<Void> addLibro(@RequestBody LibroDTO libroDTO) {
+        servicioGeneral.addLibro(libroDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED); // Retorna 201 si el libro fue creado con éxito
+    }
+
+    /*
+    Metodos de ejemplar con Spring
+     */
+    // Obtener todos los ejemplares
+    @GetMapping("/ejemplares")
+    public List<EjemplarDTO> getAllEjemplares() {
+        return servicioGeneral.getAllEjemplares();
+    }
+
+    // Obtener un ejemplar por ISBN
+    @GetMapping("ejemplares/{isbn}")
+    public EjemplarDTO getEjemplarByIsbn(@PathVariable String isbn) {
+        return servicioGeneral.getEjemplarByIsbn(isbn);
+    }
+
+    // Añadir un nuevo ejemplar
+    @PostMapping("/ejemplares")
+    public void addEjemplar(@RequestBody EjemplarDTO ejemplarDTO) {
+        servicioGeneral.addEjemplar(ejemplarDTO);
+    }
+    // Actualizar un ejemplar por ID
+    @PutMapping("ejemplares/{id}")
+    public void updateEjemplar(@PathVariable Integer id, @RequestBody EjemplarDTO ejemplarDTO) {
+        servicioGeneral.updateEjemplar(id, ejemplarDTO);
+    }
+    // Eliminar un ejemplar por ID
+    @DeleteMapping("ejemplares/{id}")
+    public void deleteEjemplar(@PathVariable Integer id) {
+        servicioGeneral.deleteEjemplar(id);
     }
 }
