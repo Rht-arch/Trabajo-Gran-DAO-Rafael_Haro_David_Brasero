@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-01-2025 a las 09:29:11
+-- Tiempo de generación: 25-02-2025 a las 09:01:32
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -27,14 +27,11 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `ejemplar`
 --
 
-CREATE DATABASE biblioteca;
-USE biblioteca;
-
 CREATE TABLE `ejemplar` (
   `id` int(11) NOT NULL,
   `isbn` varchar(20) NOT NULL,
   `estado` enum('Disponible','Prestado','Dañado') DEFAULT 'Disponible'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ejemplar`
@@ -59,7 +56,7 @@ CREATE TABLE `libro` (
   `isbn` varchar(20) NOT NULL,
   `titulo` varchar(200) NOT NULL,
   `autor` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `libro`
@@ -83,7 +80,7 @@ CREATE TABLE `prestamo` (
   `ejemplar_id` int(11) NOT NULL,
   `fechaInicio` date NOT NULL,
   `fechaDevolucion` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prestamo`
@@ -108,19 +105,18 @@ CREATE TABLE `usuario` (
   `nombre` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `tipo` enum('normal','administrador') NOT NULL,
-  `penalizacionHasta` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `tipo` enum('normal','administrador') NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `dni`, `nombre`, `email`, `password`, `tipo`, `penalizacionHasta`) VALUES
-(1, '12345678A', 'Juan Pérez', 'juan.perez@example.com', 'password123', 'normal', NULL),
-(2, '87654321B', 'Ana García', 'ana.garcia@example.com', 'password123', 'normal', NULL),
-(3, '11223344C', 'Luis López', 'luis.lopez@example.com', 'adminpass123', 'administrador', NULL),
-(4, '49149509G', 'David', 'David@gmail.com', '123', 'normal', NULL);
+INSERT INTO `usuario` (`id`, `dni`, `nombre`, `email`, `password`, `tipo`) VALUES
+(1, '12345678A', 'Juan Pérez', 'juan.perez@example.com', 'password123', 'normal'),
+(2, '87654321B', 'Ana García', 'ana.garcia@example.com', 'password123', 'normal'),
+(3, '11223344C', 'Luis López', 'luis.lopez@example.com', 'adminpass123', 'administrador'),
+(4, '49149509G', 'David', 'David@gmail.com', '123', 'normal');
 
 --
 -- Índices para tablas volcadas
@@ -130,8 +126,7 @@ INSERT INTO `usuario` (`id`, `dni`, `nombre`, `email`, `password`, `tipo`, `pena
 -- Indices de la tabla `ejemplar`
 --
 ALTER TABLE `ejemplar`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKil41embjke7axloslhd82vlv8` (`isbn`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `libro`
@@ -143,59 +138,13 @@ ALTER TABLE `libro`
 -- Indices de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKiq1nrc3dah91m2ug85kjk950g` (`ejemplar_id`),
-  ADD KEY `FKqxhq6d4w6fuv27c7j3af28wdu` (`usuario_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dni` (`dni`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `ejemplar`
---
-ALTER TABLE `ejemplar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `prestamo`
---
-ALTER TABLE `prestamo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `ejemplar`
---
-ALTER TABLE `ejemplar`
-  ADD CONSTRAINT `FKil41embjke7axloslhd82vlv8` FOREIGN KEY (`isbn`) REFERENCES `libro` (`isbn`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ejemplar_ibfk_1` FOREIGN KEY (`isbn`) REFERENCES `libro` (`isbn`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `prestamo`
---
-ALTER TABLE `prestamo`
-  ADD CONSTRAINT `FKiq1nrc3dah91m2ug85kjk950g` FOREIGN KEY (`ejemplar_id`) REFERENCES `ejemplar` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FKqxhq6d4w6fuv27c7j3af28wdu` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `prestamo_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `prestamo_ibfk_2` FOREIGN KEY (`ejemplar_id`) REFERENCES `ejemplar` (`id`) ON DELETE CASCADE;
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
